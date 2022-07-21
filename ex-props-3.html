@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Ex-props-advanced</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 
+        <YouComponent
+            propsName = "String literals"
+            propsName2 = {expression} không truyền được if else swich case...
+        />
+        - Props default to "true" mặc định luôn luôn là true
+        - Spead/Rest props
+        - Children props
+            - <YouComponent>String literals</YouComponent>
+            - <YouComponent>{expression}</YouComponent>
+        - Render props truyền function qua props thông thường truyền qua children
+     -->
+    <script type="text/babel">
+
+        //- Spead/Rest props
+        function Input({ lable, ...inputProps }) { // Chỉ lable là giữ nguyên tất cả props còn lại của input (Rest)
+            return (
+                <div>
+                    <lable>{lable}</lable>
+                    <input {...inputProps} />
+                </div>
+            )
+        }
+
+
+        function App() {
+
+            return (
+                <div>
+                    <Input
+                        lable="Username"
+                        type="text"
+                        placeholder="Enter your name"
+                        title="hello"
+                        onFocus={() => console.log(Math.random())}
+                    />
+                </div>
+            )
+        }
+        // Render props cách này ít dùng
+        function List({ data, children }) {
+            console.log(children)
+            return (
+                <ul>
+                    {data.map(item => children(item))}
+                </ul>
+            )
+        }
+        // children(item)) <=> <li>{item}</li> vì children trả ra thẻ li
+
+        function App() {
+            const cars = ["BMW", "Honda", "Mazda"]
+            return (
+                // Trong list là children props
+                <div>
+                    <List data={cars}>
+                        {(item) => <li>{item}</li>}
+                    </List>
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, document.getElementById("root"))
+    </script>
+</body>
+<style>
+    button {
+        width: 200px;
+        height: 40px;
+        background-color: brown;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 100px;
+    }
+</style>
+
+</html>

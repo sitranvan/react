@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Props</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 
+        Props
+        - React element
+            - Sử dụng props giống như attribute của thẻ HTML class, src, alt
+            - 2 props class, for => className, htmlFor
+            - Phải tuân theo quy ước có sẵn những gì của HTML
+        - React component
+            - Sử dụng props giống như đối số của Component (Giống đối số function) <Header "title"/> giống như Header("title")
+            - Tự do đặt tên props theo camelCase, hoặc có dấu gạch ngang(hạn chế đặt)
+        - Chú ý
+            - Props "key" là props đặt biệt dùng trong reactElement, reactComponent nằm vào trong array
+            - Props cơ bản là đối số của Component => có thể bất kì kiểu dữ liệu gì
+            - Sử dụng destructuring
+     -->
+    <script type="text/babel">
+        // PostItem.js
+        function PostItem(props) {
+            return (
+                <div className="post-item">
+                    <img src={props.image} />
+                    <h1 className="post-title">{props.title}</h1>
+                    <p className="post-desc">{props.desc}</p>
+                    <p className="post-published">{props.published}</p>
+
+                </div>
+            )
+        }
+
+        // Destructuring có thể đặt giá tri default cho hàm callback không cần kiểm tra if else
+        function PostItem2({
+            image, title, desc, published,
+            callback = () => { }, // với những PostItem không được truyền mặc định function, function gọi function không lỗi
+        }) {
+            callback()
+            return (
+                <div className="post-item">
+                    <img src={image} />
+                    <h1 className="post-title">{title}</h1>
+                    <p className="post-desc">{desc}</p>
+                    <p className="post-published">{published}</p>
+                </div>
+            )
+        }
+        //* App.js
+        function App() {
+            return (
+                <div id="wrapper">
+                    <PostItem
+                        image="https://images.unsplash.com/photo-1656359526341-bf6ca7077e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                        title="1. C#(.NET) - Tương tác với file Excel"
+                        desc="1. Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel"
+                        published="1. Một ngày trước"
+                        callback={() => { }}
+                    />
+                    <PostItem
+                        image="https://images.unsplash.com/photo-1656359526341-bf6ca7077e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                        title="2. C#(.NET) - Tương tác với file Excel"
+                        desc="2. Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel"
+                        published="2. Một ngày trước"
+                    />
+                    <PostItem
+                        image="https://images.unsplash.com/photo-1656359526341-bf6ca7077e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                        title="3. C#(.NET) - Tương tác với file Excel"
+                        desc="3. Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel"
+                        published="3. Một ngày trước"
+                    />
+
+                </div>
+            )
+        }
+
+        // index.js
+        ReactDOM.render(<App />, document.getElementById("root"))
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Component</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 
+        1. Reactt type string, function, class
+            - wrapper
+                - header -> headerComponent
+                - content -> contentComponent
+                - footer -> footerComponent
+        2. Biểu diễn với jsx
+     -->
+    <script type="text/babel">
+        // Tư tưởng chia component bóc tách file header, contentm footer sau đó import vào một file và ráp lại
+        // Quy tắc viết hoa tất cả chữ cái đầu nó sẽ biến function, class thành cú pháp như thẻ tag 
+        // Khi không có element bên trong viết ngắn gọn đóng luôn thẻ <Header></Header> => <Header />
+        //* Function 
+        function Header() {
+            return (
+                <div className="header">Header Component</div>
+            )
+        }
+        //* Class
+        class Content extends React.Component {
+            render() {
+                return (
+                    <div className="content">Content Component</div>
+                )
+            }
+        }
+
+
+        const app = (
+            <div className="wrapper">
+                <Header />
+                <Content />
+                <div className="footer">Footer</div>
+            </div>
+        )
+        ReactDOM.render(app, document.getElementById("root"))
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>

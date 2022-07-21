@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>DOM-Event</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const courses = [
+            {
+                img: "https://images.unsplash.com/photo-1656936637945-571e3f0893f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+                title: "HTML",
+                desc: "Nắm vững các thẻ, các thuộc tính"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1656918668725-2910c63d63bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+                title: "CSS",
+                desc: "Nắm vững các style trong css"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1656952945433-6cc98812d2a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+                title: "Javascript",
+                desc: "Nắm vững các tư duy logic phân tích"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1656937968385-481fc798b0b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+                title: "Reactjs",
+                desc: "Sử dụng render giao diện người dùng"
+            },
+        ]
+
+
+        function CourseItem({ data, onClick }) {
+
+            return (
+                <div>
+                    <img onClick={() => onClick(data)} src={data.img} />
+                    <h1>{data.title}</h1>
+                    <p>{data.desc}</p>
+                </div>
+            )
+        }
+        function App() {
+            const handleClick = (data) => {
+                console.log(data.title)
+            }
+            return (
+                <div id="wrapper">
+                    {courses.map((course, index) => (
+                        <CourseItem
+                            data={course}
+                            onClick={handleClick}
+                        />
+                    ))}
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"))
+
+    </script>
+</body>
+
+</html>

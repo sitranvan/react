@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <title>JSX</title>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+        //! JSX
+        const course = [
+            {
+                name: "Javascript"
+            },
+            {
+                name: "PHP"
+            },
+            {
+                name: "Ruby"
+            },
+        ]
+        //* Render dữ liệu vào thẻ ul cho sẵn sau đó render vào thẻ root
+        // Nên đặt key để tránh trùng nhau lấy index có sẵn vì index tăng dần liên quan đến tối ưu hiệu năng
+        const ulList =
+            <ul>
+                {course.map((item, index) => <li key={index}>{item.name}</li>)}
+            </ul>
+        ReactDOM.render(ulList, document.getElementById("root"))
+
+        // Render 2 element cùng 1 lúc sẽ bị lỗi cần dùng 1 thẻ wrap lại 2 element => nhưng xấu sinh ra 1 thẻ không cần thiết
+        const jsx = (
+            <React.Fragment>
+                <h1>Heading1</h1>
+                <h2>Heading2</h2>
+            </React.Fragment>
+        )
+
+        // Dùng createElement
+        const jsxCreaElement = React.createElement(
+            React.Fragment,
+            null,
+            React.createElement("h1", null, "Heading1"),
+            React.createElement("h2", null, "Heading2"),
+        )
+        ReactDOM.render(jsx, document.getElementById("root"))
+    </script>
+</body>
+
+</html>

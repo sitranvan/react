@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Ex-component</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- 
+        Cho đoạn code
+    <div className="post-list">
+        <div className="post-item">
+            <h2 className="post-title">C#(.NET) - Tương tác với file Excel</h2>
+            <p className="post-desc">Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel</p>
+            <p className="post-published">Một ngày trước</p>
+        </div>
+    </div>
+    Yêu cầu Hãy render ra giao diện người dùng component postItem
+     -->
+
+    <script type="text/babel">
+
+        // Function component
+        function PostItem() {
+            return (
+                <div className="post-item">
+                    <img src="https://images.unsplash.com/photo-1656359526341-bf6ca7077e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" />
+                    <h2 className="post-title">C#(.NET) - Tương tác với file Excel</h2>
+                    <p className="post-desc">Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel</p>
+                    <p className="post-published">Một ngày trước</p>
+                </div>
+            )
+        }
+        // Class component
+        class PostItem2 extends React.Component {
+            render() {
+                return (
+                    <div className="post-item">
+                        <img src="https://images.unsplash.com/photo-1656359526341-bf6ca7077e86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDl8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" />
+                        <h2 className="post-title">C#(.NET) - Tương tác với file Excel</h2>
+                        <p className="post-desc">Bạn có kiến thức C# Bạn muốn thực hiện tương tác với excel</p>
+                        <p className="post-published">Một ngày trước</p>
+                    </div>
+                )
+            }
+        }
+
+        const app = (
+            <div className="post-list">
+                <PostItem />
+                <PostItem2 />
+                <PostItem />
+
+            </div >
+        )
+        ReactDOM.render(app, document.getElementById("root"))
+    </script>
+</body>
+
+</html>
